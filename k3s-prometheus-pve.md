@@ -45,9 +45,14 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 
 ```yaml
 grafana:
+  # Для лабораторной работы пароль можно указать здесь.
+  # В продакшене используйте существующий Secret (grafana.admin.existingSecret)
   adminPassword: "ВашНадёжныйПароль"
   service:
     type: NodePort
+  persistence:
+    enabled: true
+    size: 1Gi  # или 5Gi, если планируете много дашбордов
   resources:
     requests: { memory: 256Mi, cpu: 100m }
     limits: { memory: 512Mi }
